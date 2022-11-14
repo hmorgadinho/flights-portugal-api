@@ -31,18 +31,11 @@ public class FlightService implements IFlightService {
 
     private double getAvgPrice(Airport.City departure, Airport.City arrival) {
 
-        List<Flight> flights = repository.getAllFlights();
-
-        long size = flights.stream()
-                .filter(flight -> flight.getDepartureAirport().getCity().equals(departure) &&
-                        flight.getArrivalAirport().getCity().equals(arrival))
-                .count();
+        List<Flight> flights = repository.getFlightsFromTo(departure, arrival);
 
         double sum = flights.stream()
-                .filter(flight -> flight.getDepartureAirport().getCity().equals(departure) &&
-                        flight.getArrivalAirport().getCity().equals(arrival))
                 .mapToDouble(flight -> flight.getPrice().getValue()).sum();
 
-        return sum / size;
+        return sum / flights.size();
     }
 }
