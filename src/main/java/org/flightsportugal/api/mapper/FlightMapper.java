@@ -1,14 +1,15 @@
 package org.flightsportugal.api.mapper;
 
 
-import org.flightsportugal.api.appservice.IFlightMapper;
 import org.flightsportugal.api.domain.Flight;
 import org.flightsportugal.api.dto.FlightDTO;
 
+import javax.enterprise.context.ApplicationScoped;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FlightMapper implements IFlightMapper {
+@ApplicationScoped
+public class FlightMapper {
 
     public List<FlightDTO> toDTO(List<Flight> flights, double avgPrice) {
         return flights.stream()

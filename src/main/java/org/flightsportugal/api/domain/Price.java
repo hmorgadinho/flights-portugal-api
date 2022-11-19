@@ -4,11 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 @AllArgsConstructor
 @Getter
 @EqualsAndHashCode
 public class Price {
+    public enum Currency{
+        EUR, USD, GBP, CHY
+    }
 
-    private final double value;
-    private final String currency;
+    private double value;
+    @Enumerated(EnumType.STRING)
+    private Currency currency;
+
 }
+
